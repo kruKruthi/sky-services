@@ -10,11 +10,6 @@ import { resolvers } from '../schema/resolvers.js';
 const app = express();
 app.use(express.json());
 
-// export const getAllProducts = async () => {
-//   const menuList = await HeaderModel.find().lean();
-//   return menuList;
-// };
-
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 // Connect to MongoDB and Starting the Apollo Server
 connectToDB()

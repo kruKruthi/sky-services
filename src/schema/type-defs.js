@@ -19,5 +19,34 @@ export const typeDefs = gql`
     label: String!
     link: String!
   }
+
+  type GridContent {
+    id: ID!
+    title: String!
+    subHeader: String!
+    description: String!
+    images: [Image]
+  }
+
+  type Image {
+    url: String!
+    altText: String
+  }
+
+  input ImageInput {
+    url: String!
+    altText: String
+  }
+
+  input GridContentInput {
+    title: String!
+    subHeader: String!
+    description: String!
+    images: [ImageInput!]!
+  }
+
+  type Mutation {
+    createGridDetails(input: GridContentInput!): GridContent!
+  }
 `;
 
