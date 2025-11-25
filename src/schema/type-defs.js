@@ -5,6 +5,8 @@ export const typeDefs = gql`
   type Query {
     HeaderMenus: [HeaderMenu!]
     HeaderMenu(id: ID!): HeaderMenu
+    products: [Product!]
+    product(id: ID!): Product
   }
 
   type HeaderMenu {
@@ -45,8 +47,43 @@ export const typeDefs = gql`
     images: [ImageInput!]!
   }
 
+  type Product {
+  id: ID!
+  title: String!
+  description: String!
+  images: [Image!]!
+  createdAt: String!
+  updatedAt: String
+}
+
+  type Image {
+    url: String!
+    altText: String
+  }
+
+  input CreateProductImage {
+    url: String!
+    altText: String
+  }
+
+  input CreateProductInput {
+    title: String!
+    description: String
+    images: [CreateProductImage!]!
+  }
+
+  input UpdateProductInput {
+    id: ID!
+    title: String!
+    description: String
+    images: [CreateProductImage!]!
+  }
+
   type Mutation {
     createGridDetails(input: GridContentInput!): GridContent!
+    createProduct(input: CreateProductInput!): Product
+    deleteProduct(id: ID!): Product!
+    updateProduct(input: UpdateProductInput!): Product!
   }
 `;
 
